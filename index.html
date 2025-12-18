@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
+    />
+  </head>
+  <body>
+    <input type="text" id="cret" />
+    <button onclick="create()">add</button>
+    <button onclick="delee()">delete</button>
+    <button onclick="update()">update</button>
+    <p id="crett"></p>
+    <script>
+      let br = ["adil", "ali", "gemy"];
+
+      function create() {
+        var cr = document.getElementById("cret").value;
+        if (cr == "") {
+          alert("Write something");
+        } else {
+          br.push(cr);
+          document.getElementById("crett").innerHTML = br.join("<br>");
+        }
+      }
+      function delee() {
+        var cr = document.getElementById("cret").value;
+        br.pop(cr);
+        document.getElementById("crett").innerHTML = br.join("<br>");
+      }
+      function update() {
+        let newName = document.getElementById("cret").value;
+        br.splice(cr);
+        document.getElementById("crett").innerHTML = br
+      }
+      function showdata(){
+         document.getElementById("crett").innerHTML = br
+      }
+    </script>
+  </body>
+</html>
