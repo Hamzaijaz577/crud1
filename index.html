@@ -1,45 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
-    />
-  </head>
-  <body>
-    <input type="text" id="cret" />
-    <button onclick="create()">add</button>
-    <button onclick="delee()">delete</button>
-    <button onclick="update()">update</button>
-    <p id="crett"></p>
-    <script>
-      let br = ["adil", "ali", "gemy"];
+<head>
+<meta charset="UTF-8">
+<title>CRUD Example</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
 
-      function create() {
-        var cr = document.getElementById("cret").value;
-        if (cr == "") {
-          alert("Write something");
-        } else {
-          br.push(cr);
-          document.getElementById("crett").innerHTML = br.join("<br>");
-        }
-      }
-      function delee() {
-        var cr = document.getElementById("cret").value;
-        br.pop(cr);
-        document.getElementById("crett").innerHTML = br.join("<br>");
-      }
-      function update() {
-        let newName = document.getElementById("cret").value;
-        br.splice(cr);
-        document.getElementById("crett").innerHTML = br
-      }
-      function showdata(){
-         document.getElementById("crett").innerHTML = br
-      }
-    </script>
-  </body>
+  input {
+    padding: 8px;
+    width: 200px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  #crett {
+    margin-top: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  #crett span {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 5px 8px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+  }
+
+  #crett button {
+    padding: 2px 6px;
+    font-size: 12px;
+    background-color: #dc3545;
+  }
+
+  #crett button:hover {
+    background-color: #a71d2a;
+  }
+</style>
+</head>
+<body>
+
+<input type="text" id="cret" placeholder="Write name..." />
+<button onclick="create()">Add</button>
+<button onclick="delee()">Delete Last</button>
+<button onclick="update()">Update Last</button>
+
+<div id="crett"></div>
+
+<script>
+let br = ["adil", "ali", "gemy"];
+
+function showList() {
+  const container = document.getElementById("crett");
+  container.innerHTML = ""; // clear previous list
+
+  br.forEach((name, index) => {
+    container.innerHTML += `<span>${name}</span>`;
+  });
+}
+
+// Add
+function create() {
+  let cr = document.getElementById("cret").value;
+  if (cr == "") {
+    alert("Write something");
+  } else {
+    br.push(cr);
+    document.getElementById("cret").value = "";
+    showList();
+  }
+}
+
+// Delete Last
+function delee() {
+  br.pop();
+  showList();
+}
+
+// Update Last
+function update() {
+  let newName = document.getElementById("cret").value;
+  br[br.length - 1] = newName;
+  document.getElementById("cret").value = "";
+  showList();
+}
+
+// initial display
+showList();
+</script>
+
+</body>
 </html>
